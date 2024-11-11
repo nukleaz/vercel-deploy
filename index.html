@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Elfsight Widget</title>
+		<style>
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+				font-family: Arial, sans-serif;
+				flex-direction: column;
+			}
+
+			#toggle-widget-btn {
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+				margin-bottom: 20px;
+			}
+
+			.elfsight-app-327e7c41-98f3-4cf3-ad9b-be92a15e0561 {
+				width: 100%;
+				max-width: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="toggle-widget-btn" style="margin-bottom: 40px">
+			Показать виджет
+		</button>
+		<div class="elfsight-app-327e7c41-98f3-4cf3-ad9b-be92a15e0561"></div>
+
+		<script
+			src="https://static.elfsight.com/platform/platform.js"
+			async
+		></script>
+		<script>
+			const widgetContainer = document.querySelector(
+				'.elfsight-app-327e7c41-98f3-4cf3-ad9b-be92a15e0561'
+			);
+			const toggleButton = document.getElementById('toggle-widget-btn');
+			const widgetState = localStorage.getItem('widgetVisible');
+
+			if (widgetState === 'visible') {
+				widgetContainer.style.display = 'block';
+				toggleButton.textContent = 'Скрыть виджет';
+			} else {
+				widgetContainer.style.display = 'none';
+				toggleButton.textContent = 'Показать виджет';
+			}
+
+			toggleButton.addEventListener('click', () => {
+				if (widgetContainer.style.display === 'none') {
+					widgetContainer.style.display = 'block';
+					toggleButton.textContent = 'Скрыть виджет';
+					localStorage.setItem('widgetVisible', 'visible');
+				} else {
+					widgetContainer.style.display = 'none';
+					toggleButton.textContent = 'Показать виджет';
+					localStorage.setItem('widgetVisible', 'hidden');
+				}
+			});
+		</script>
+	</body>
+</html>
